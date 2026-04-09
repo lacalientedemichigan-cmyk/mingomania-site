@@ -3,185 +3,173 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mingomania | Music Hub</title>
+  <title>Mingomania | Releases</title>
   <meta
     name="description"
-    content="Mingomania es una website de musica inspirada en una plataforma de streaming, centrada en YouTube y lista para mostrar videos, lanzamientos y playlists."
+    content="Mingomania presenta sus releases, visuales y universo musical en una website enfocada en estrenos y presencia de artista."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Archivo:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <a class="brand" href="#top" aria-label="Inicio Mingomania">
-        <span class="brand-mark">M</span>
+  <div class="page-glow" aria-hidden="true"></div>
+
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand-lockup" href="#top" aria-label="Ir al inicio de Mingomania">
+        <span class="brand-badge">M</span>
         <div>
           <strong>Mingomania</strong>
-          <span>YouTube Music Hub</span>
+          <span>Official Releases</span>
         </div>
       </a>
 
-      <nav class="sidebar-nav" aria-label="Principal">
-        <a class="nav-item active" href="#top">Home</a>
-        <a class="nav-item" href="#escucha">Escucha</a>
-        <a class="nav-item" href="#videos">Videos</a>
-        <a class="nav-item" href="#mixes">Mixes</a>
-        <a class="nav-item" href="#catalogo">Catalogo</a>
+      <nav class="top-nav" aria-label="Navegacion principal">
+        <a href="#releases">Releases</a>
+        <a href="#picks">Picks</a>
+        <a href="#vision">Vision</a>
+        <a href="#contacto">Contacto</a>
       </nav>
 
-      <div class="sidebar-block">
-        <p class="sidebar-label">Library</p>
-        <a class="mini-link" href="https://www.youtube.com/@Mingomania_Music" target="_blank" rel="noreferrer">Canal oficial</a>
-        <a class="mini-link" href="#videos">Videos destacados</a>
-        <a class="mini-link" href="#mixes">Quick picks</a>
-        <a class="mini-link" href="#contacto">Booking</a>
-      </div>
+      <a class="header-button" href="https://www.youtube.com/@Mingomania_Music" target="_blank" rel="noreferrer">
+        YouTube
+      </a>
+    </header>
 
-      <div class="sidebar-note">
-        <p>Todo gira alrededor de YouTube para que la musica, los videos y la audiencia vivan en un mismo lugar.</p>
-      </div>
-    </aside>
-
-    <main class="content" id="top">
-      <header class="topbar">
-        <div class="chip-row">
-          <span class="chip chip-active">Home</span>
-          <span class="chip">Musica</span>
-          <span class="chip">Videos</span>
-          <span class="chip">Live</span>
-          <span class="chip">Playlists</span>
-        </div>
-        <a class="topbar-link" href="https://www.youtube.com/@Mingomania_Music" target="_blank" rel="noreferrer">Abrir YouTube</a>
-      </header>
-
-      <section class="hero-panel" id="escucha">
+    <main class="page-content" id="top">
+      <section class="hero-section">
         <div class="hero-copy">
-          <p class="eyebrow">Artist profile</p>
-          <h1>Listen Again, pero con sello Mingomania.</h1>
-          <p>
-            Una portada estilo plataforma musical para empujar todo hacia YouTube: estrenos,
-            visualizers, lives, playlists y el universo completo del proyecto.
+          <p class="eyebrow">Mingomania music archive</p>
+          <h1>Releases oficiales con imagen, atmosfera y peso propio.</h1>
+          <p class="hero-text">
+            Esta version de la web ya no parece maqueta. Ahora gira alrededor de tus lanzamientos
+            reales, con una presencia mas limpia, mas seria y mucho mas alineada a un proyecto
+            musical que vive en YouTube.
           </p>
+
           <div class="hero-actions">
-            <a class="button button-primary" href="https://www.youtube.com/@Mingomania_Music" target="_blank" rel="noreferrer">Play on YouTube</a>
-            <a class="button button-secondary" href="#videos">Explorar modulos</a>
+            <a class="button button-primary" href="https://www.youtube.com/playlist?list=PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-" target="_blank" rel="noreferrer">
+              Escuchar releases
+            </a>
+            <a class="button button-secondary" href="#releases">
+              Ver portada
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-pill">
+              <span>Fuente</span>
+              <strong>Playlist oficial</strong>
+            </div>
+            <div class="meta-pill">
+              <span>Canal</span>
+              <strong>@Mingomania_Music</strong>
+            </div>
           </div>
         </div>
 
-        <div class="hero-focus">
-          <div class="focus-card">
-            <p class="focus-label">Ahora sonando</p>
-            <h2>Mingomania</h2>
-            <span>Canal principal para videos, estrenos y comunidad</span>
-          </div>
-          <div class="focus-orbs" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="hero-panel">
+          <p class="panel-kicker">Live release board</p>
+          <div class="hero-stack">
+            <article class="hero-tile hero-tile-primary">
+              <span>Latest drop</span>
+              <strong>Mingomania</strong>
+            </article>
+            <article class="hero-tile hero-tile-secondary">
+              <span>Visual identity</span>
+              <strong>Sonidera moderna</strong>
+            </article>
+            <article class="hero-tile hero-tile-tertiary">
+              <span>Source</span>
+              <strong>YouTube Releases</strong>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="module" id="videos">
-        <div class="module-head">
+      <section class="section-block" id="releases">
+        <div class="section-head">
           <div>
             <p class="eyebrow">Official release feed</p>
             <h2>Latest releases</h2>
           </div>
-          <a href="https://www.youtube.com/playlist?list=PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-" target="_blank" rel="noreferrer">Abrir playlist</a>
+          <a href="https://www.youtube.com/playlist?list=PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-" target="_blank" rel="noreferrer">
+            Abrir playlist
+          </a>
         </div>
 
-        <div class="cover-grid" id="featured-videos">
-          <article class="cover-card placeholder-card">
-            <div class="cover-art"><span>YT</span></div>
+        <div class="release-grid" id="featured-videos">
+          <article class="release-card placeholder-card">
+            <div class="release-thumb placeholder-thumb">YT</div>
             <h3>Cargando releases</h3>
-            <p>Vamos por tus lanzamientos desde la playlist oficial.</p>
+            <p>Estamos trayendo tus lanzamientos oficiales.</p>
           </article>
         </div>
       </section>
 
-      <section class="module" id="mixes">
-        <div class="module-head">
-          <div>
-            <p class="eyebrow">Release shortcuts</p>
-            <h2>Quick picks</h2>
-          </div>
-          <a class="ghost-button ghost-link" href="https://www.youtube.com/playlist?list=PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-" target="_blank" rel="noreferrer">Play all</a>
-        </div>
-
-        <div class="quick-grid" id="quick-picks">
-          <article class="quick-item">
-            <span class="quick-dot"></span>
+      <section class="two-column-layout">
+        <section class="section-block compact-block" id="picks">
+          <div class="section-head">
             <div>
-              <h3>Preparando picks</h3>
-              <p>Esta lista se llena sola con los releases de tu playlist.</p>
+              <p class="eyebrow">Quick access</p>
+              <h2>Quick picks</h2>
             </div>
-          </article>
-        </div>
+            <a href="https://www.youtube.com/playlist?list=PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-" target="_blank" rel="noreferrer">
+              Play all
+            </a>
+          </div>
+
+          <div class="quick-list" id="quick-picks">
+            <article class="quick-card">
+              <span class="quick-index">01</span>
+              <div>
+                <h3>Preparando picks</h3>
+                <p>La lista se llena sola con tus releases reales.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-block vision-block" id="vision">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Artist direction</p>
+              <h2>Vision</h2>
+            </div>
+          </div>
+
+          <div class="vision-copy">
+            <p>
+              Mingomania necesita verse como proyecto musical serio: portadas al frente, menos
+              ruido visual, mas contraste, mejor tipografia y una narrativa enfocada en lanzamientos.
+            </p>
+            <p>
+              Esta base ya esta lista para el siguiente nivel: portada real, bio fuerte, fotos de
+              artista, embeds y una direccion visual mas cinematica.
+            </p>
+          </div>
+        </section>
       </section>
 
-      <section class="module dual-module" id="catalogo">
-        <div class="module-pane">
-          <div class="module-head">
-            <div>
-              <p class="eyebrow">Recommended albums</p>
-              <h2>Releases</h2>
-            </div>
-          </div>
-
-          <div class="album-row">
-            <article class="album-card tone-a"><span></span><h3>Drop 01</h3><p>Single / Video</p></article>
-            <article class="album-card tone-b"><span></span><h3>Drop 02</h3><p>Visual session</p></article>
-            <article class="album-card tone-c"><span></span><h3>Drop 03</h3><p>Live clip</p></article>
-            <article class="album-card tone-d"><span></span><h3>Drop 04</h3><p>Playlist</p></article>
-            <article class="album-card tone-e"><span></span><h3>Drop 05</h3><p>Premiere</p></article>
-          </div>
-        </div>
-
-        <div class="module-pane">
-          <div class="module-head">
-            <div>
-              <p class="eyebrow">Similar to</p>
-              <h2>Artist lanes</h2>
-            </div>
-          </div>
-
-          <div class="artist-row">
-            <article class="artist-card">
-              <div class="artist-avatar avatar-a"></div>
-              <h3>Mingomania</h3>
-              <p>Canal oficial</p>
-            </article>
-            <article class="artist-card">
-              <div class="artist-avatar avatar-b"></div>
-              <h3>Lives</h3>
-              <p>Shows y sesiones</p>
-            </article>
-            <article class="artist-card">
-              <div class="artist-avatar avatar-c"></div>
-              <h3>Visuals</h3>
-              <p>Imagen y clips</p>
-            </article>
-            <article class="artist-card">
-              <div class="artist-avatar avatar-d"></div>
-              <h3>Releases</h3>
-              <p>Nuevos drops</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="module contact-module" id="contacto">
+      <section class="section-block contact-block" id="contacto">
         <div>
-          <p class="eyebrow">Booking and contact</p>
-          <h2>Todo conectado a YouTube, listo para crecer hacia shows y contacto real.</h2>
+          <p class="eyebrow">Contacto</p>
+          <h2>Todo conectado al universo real de Mingomania.</h2>
+          <p class="contact-copy">
+            El sitio ya esta jalando releases. El siguiente paso es convertirlo en una pagina de
+            artista completa con imagen oficial, booking y secciones editoriales mejor curadas.
+          </p>
         </div>
+
         <div class="hero-actions">
-          <a class="button button-primary" href="https://www.youtube.com/@Mingomania_Music" target="_blank" rel="noreferrer">Ir al canal</a>
-          <a class="button button-secondary" href="#top">Volver arriba</a>
+          <a class="button button-primary" href="https://www.youtube.com/@Mingomania_Music" target="_blank" rel="noreferrer">
+            Ir al canal
+          </a>
+          <a class="button button-secondary" href="https://www.youtube.com/playlist?list=PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-" target="_blank" rel="noreferrer">
+            Abrir releases
+          </a>
         </div>
       </section>
     </main>
@@ -189,4 +177,3 @@
   <script src="./app.js"></script>
 </body>
 </html>
-

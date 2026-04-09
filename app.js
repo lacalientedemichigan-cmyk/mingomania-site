@@ -24,8 +24,8 @@ function renderFeatured(videos) {
 
   if (!videos.length) {
     featuredContainer.innerHTML = `
-      <article class="cover-card placeholder-card">
-        <div class="cover-art"><span>YT</span></div>
+      <article class="release-card placeholder-card">
+        <div class="release-thumb placeholder-thumb">YT</div>
         <h3>No pudimos cargar releases</h3>
         <p>Revisa la API key, la playlist o la configuracion del deploy.</p>
       </article>
@@ -33,20 +33,20 @@ function renderFeatured(videos) {
     return;
   }
 
-  featuredContainer.innerHTML = videos.slice(0, 5).map((video) => `
+  featuredContainer.innerHTML = videos.slice(0, 8).map((video) => `
     <a
-      class="cover-card video-card"
+      class="release-card"
       href="https://www.youtube.com/watch?v=${video.videoId}"
       target="_blank"
       rel="noreferrer"
     >
       <img
-        class="cover-thumb"
+        class="release-thumb"
         src="${video.thumbnail}"
         alt="${video.title}"
         loading="lazy"
       >
-      <h3>${truncate(video.title, 44)}</h3>
+      <h3>${truncate(video.title, 48)}</h3>
       <p>${formatDate(video.publishedAt)}</p>
     </a>
   `).join("");
@@ -57,8 +57,8 @@ function renderQuickPicks(videos) {
 
   if (!videos.length) {
     quickPicksContainer.innerHTML = `
-      <article class="quick-item">
-        <span class="quick-dot"></span>
+      <article class="quick-card">
+        <span class="quick-index">01</span>
         <div>
           <h3>Sin contenido</h3>
           <p>Cuando la playlist responda, esta lista se llena sola.</p>
@@ -68,16 +68,16 @@ function renderQuickPicks(videos) {
     return;
   }
 
-  quickPicksContainer.innerHTML = videos.slice(0, 8).map((video) => `
+  quickPicksContainer.innerHTML = videos.slice(0, 6).map((video, index) => `
     <a
-      class="quick-item quick-link"
+      class="quick-card"
       href="https://www.youtube.com/watch?v=${video.videoId}"
       target="_blank"
       rel="noreferrer"
     >
-      <span class="quick-dot"></span>
+      <span class="quick-index">${String(index + 1).padStart(2, "0")}</span>
       <div>
-        <h3>${truncate(video.title, 34)}</h3>
+        <h3>${truncate(video.title, 38)}</h3>
         <p>${formatDate(video.publishedAt)}</p>
       </div>
     </a>
