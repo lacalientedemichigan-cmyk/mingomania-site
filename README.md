@@ -31,6 +31,7 @@ La pagina consume:
 - `YOUTUBE_API_KEY`
 - `YOUTUBE_HANDLE`
 - `YOUTUBE_MAX_RESULTS`
+- `YOUTUBE_RELEASES_PLAYLIST_ID`
 
 ## Publicacion recomendada en Vercel
 
@@ -42,6 +43,7 @@ La pagina consume:
    - `YOUTUBE_API_KEY`
    - `YOUTUBE_HANDLE` = `@Mingomania_Music`
    - `YOUTUBE_MAX_RESULTS` = `12`
+   - `YOUTUBE_RELEASES_PLAYLIST_ID` = `PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-`
 5. Haz deploy.
 
 ## Nota sobre la API key

@@ -1,5 +1,7 @@
 const CHANNEL_HANDLE = process.env.YOUTUBE_HANDLE || "@Mingomania_Music";
 const MAX_RESULTS = Number(process.env.YOUTUBE_MAX_RESULTS || 12);
+const RELEASES_PLAYLIST_ID =
+  process.env.YOUTUBE_RELEASES_PLAYLIST_ID || "PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-";
 
 async function youtubeRequest(url) {
   const response = await fetch(url);
@@ -24,31 +26,17 @@ export default async function handler(req, res) {
   try {
     const channelUrl =
       `https://www.googleapis.com/youtube/v3/channels` +
-      `?part=contentDetails,snippet` +
+      `?part=snippet` +
       `&forHandle=${encodeURIComponent(CHANNEL_HANDLE)}` +
       `&key=${encodeURIComponent(apiKey)}`;
 
     const channelData = await youtubeRequest(channelUrl);
     const channel = channelData.items && channelData.items[0];
 
-    if (!channel) {
-      return res.status(404).json({
-        error: `No channel found for handle ${CHANNEL_HANDLE}`,
-      });
-    }
-
-    const uploadsPlaylistId = channel.contentDetails?.relatedPlaylists?.uploads;
-
-    if (!uploadsPlaylistId) {
-      return res.status(404).json({
-        error: "Uploads playlist not found",
-      });
-    }
-
     const playlistUrl =
       `https://www.googleapis.com/youtube/v3/playlistItems` +
       `?part=snippet,contentDetails` +
-      `&playlistId=${encodeURIComponent(uploadsPlaylistId)}` +
+      `&playlistId=${encodeURIComponent(RELEASES_PLAYLIST_ID)}` +
       `&maxResults=${encodeURIComponent(MAX_RESULTS)}` +
       `&key=${encodeURIComponent(apiKey)}`;
 
@@ -73,7 +61,7 @@ export default async function handler(req, res) {
           description: snippet.description || "",
           publishedAt: snippet.publishedAt || "",
           thumbnail: bestThumb,
-          channelTitle: snippet.channelTitle || channel.snippet?.title || "Mingomania",
+          channelTitle: snippet.channelTitle || channel?.snippet?.title || "Mingomania",
         };
       })
       .filter((video) => video.videoId);
@@ -81,8 +69,9 @@ export default async function handler(req, res) {
     res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate=3600");
 
     return res.status(200).json({
-      channelTitle: channel.snippet?.title || "Mingomania",
+      channelTitle: channel?.snippet?.title || "Mingomania",
       handle: CHANNEL_HANDLE,
+      playlistId: RELEASES_PLAYLIST_ID,
       videos,
     });
   } catch (error) {

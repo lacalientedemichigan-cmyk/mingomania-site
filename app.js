@@ -26,8 +26,8 @@ function renderFeatured(videos) {
     featuredContainer.innerHTML = `
       <article class="cover-card placeholder-card">
         <div class="cover-art"><span>YT</span></div>
-        <h3>No pudimos cargar videos</h3>
-        <p>Revisa la API key o la configuracion del deploy.</p>
+        <h3>No pudimos cargar releases</h3>
+        <p>Revisa la API key, la playlist o la configuracion del deploy.</p>
       </article>
     `;
     return;
@@ -61,7 +61,7 @@ function renderQuickPicks(videos) {
         <span class="quick-dot"></span>
         <div>
           <h3>Sin contenido</h3>
-          <p>Cuando la API responda, esta lista se llena sola.</p>
+          <p>Cuando la playlist responda, esta lista se llena sola.</p>
         </div>
       </article>
     `;
