@@ -7,6 +7,7 @@ const CHANNEL_HANDLE = process.env.YOUTUBE_HANDLE || "@Mingomania_Music";
 const MAX_RESULTS = readPositiveInteger(process.env.YOUTUBE_MAX_RESULTS, 12);
 const PLAYLIST_SCAN_LIMIT = Math.max(
   MAX_RESULTS,
+  500,
   readPositiveInteger(process.env.YOUTUBE_PLAYLIST_SCAN_LIMIT, 500),
 );
 const RELEASES_PLAYLIST_ID =
