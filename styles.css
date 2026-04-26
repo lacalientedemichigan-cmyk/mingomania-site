@@ -87,12 +87,12 @@ a {
 }
 
 .brand-lockup {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  min-width: 0;
 }
 
-.brand-badge,
 .button,
 .header-button,
 .hero-tile strong,
@@ -101,41 +101,22 @@ a {
 .quick-card h3,
 .vision-block h2,
 .contact-block h2,
-.brand-lockup strong,
 .top-nav a {
   font-family: "Syne", sans-serif;
 }
 
-.brand-badge {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  background: #0f0a0d;
-  box-shadow: 0 12px 28px rgba(255, 79, 136, 0.24);
-}
-
-.brand-badge img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.brand-wordmark {
+  width: clamp(180px, 20vw, 250px);
+  height: auto;
   display: block;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.34));
 }
 
-.brand-lockup div {
-  display: grid;
-  gap: 3px;
-}
-
-.brand-lockup strong {
-  font-size: 1.3rem;
-}
-
-.brand-lockup span:last-child {
+.brand-subline {
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
 }
 
 .top-nav {
@@ -511,6 +492,15 @@ a {
   .top-nav a {
     width: 100%;
     justify-content: center;
+  }
+
+  .brand-lockup {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .brand-wordmark {
+    width: min(100%, 260px);
   }
 
   .hero-section,
