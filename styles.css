@@ -442,10 +442,69 @@ a {
     rgba(24, 8, 18, 0.68);
 }
 
-.vision-copy {
-  display: grid;
-  gap: 14px;
-  max-width: 56ch;
+.vision-manifesto {
+  position: relative;
+  margin: 0;
+  padding: 28px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 214, 236, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(255, 60, 147, 0.16), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(255, 154, 61, 0.12), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+    rgba(20, 7, 16, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.vision-manifesto::before {
+  content: "\"";
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-family: "Syne", sans-serif;
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 1;
+  color: rgba(255, 183, 215, 0.14);
+}
+
+.vision-line {
+  margin: 0;
+  max-width: 36ch;
+  color: #fff3f8;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.55;
+}
+
+.vision-line + .vision-line {
+  margin-top: 10px;
+}
+
+.vision-line-soft {
+  color: #ffb7d7;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.82rem;
+}
+
+.vision-line-strong {
+  max-width: 14ch;
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  line-height: 0.95;
+  color: #fffafc;
+}
+
+.vision-line-spaced {
+  margin-top: 26px;
+}
+
+.vision-signoff {
+  margin-top: 30px;
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1;
+  color: #ffcf53;
+  text-shadow: 0 10px 34px rgba(255, 154, 61, 0.16);
 }
 
 .contact-block {
