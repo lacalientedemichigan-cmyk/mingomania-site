@@ -33,7 +33,7 @@ function renderFeatured(videos) {
     return;
   }
 
-  featuredContainer.innerHTML = videos.slice(0, 8).map((video) => `
+  featuredContainer.innerHTML = videos.map((video) => `
     <a
       class="release-card"
       href="https://www.youtube.com/watch?v=${video.videoId}"
@@ -86,7 +86,9 @@ function renderQuickPicks(videos) {
 
 async function loadVideos() {
   try {
-    const response = await fetch("/api/youtube-videos");
+    const response = await fetch("/api/youtube-videos", {
+      cache: "no-store",
+    });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }

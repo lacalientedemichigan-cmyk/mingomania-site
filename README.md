@@ -43,8 +43,13 @@ La pagina consume:
    - `YOUTUBE_API_KEY`
    - `YOUTUBE_HANDLE` = `@Mingomania_Music`
    - `YOUTUBE_MAX_RESULTS` = `12`
+   - `YOUTUBE_PLAYLIST_SCAN_LIMIT` = `500`
    - `YOUTUBE_RELEASES_PLAYLIST_ID` = `PL5RtHtE2nWBVvzVa_D8cm77Zz1FIDK58-`
 5. Haz deploy.
+
+El sitio escanea hasta `YOUTUBE_PLAYLIST_SCAN_LIMIT` canciones de la playlist, ordena por las mas
+recientemente agregadas y muestra solo `YOUTUBE_MAX_RESULTS`. La API tambien usa cache corto para
+que una cancion agregada hoy aparezca rapido en la web.
 
 ## Nota sobre la API key
 
