@@ -334,6 +334,36 @@ a {
   margin-top: 26px;
 }
 
+.hero-counter-banner {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 241, 194, 0.16);
+  background:
+    linear-gradient(135deg, rgba(15, 142, 76, 0.22), rgba(240, 181, 75, 0.18), rgba(213, 58, 50, 0.18)),
+    rgba(26, 12, 9, 0.72);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+}
+
+.hero-counter-label {
+  color: #f7e4bb;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.hero-counter-banner strong {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1;
+  color: var(--accent-4);
+  text-shadow: 0 8px 18px rgba(244, 187, 67, 0.18);
+}
+
 .meta-pill {
   min-width: 180px;
   padding: 16px 18px;
@@ -348,17 +378,6 @@ a {
   display: block;
   font-family: "Syne", sans-serif;
   font-size: 1rem;
-}
-
-.meta-pill-counter {
-  background:
-    linear-gradient(135deg, rgba(15, 142, 76, 0.18), rgba(240, 181, 75, 0.14), rgba(213, 58, 50, 0.16)),
-    rgba(255, 248, 239, 0.03);
-}
-
-.meta-pill-counter strong {
-  font-size: clamp(1.15rem, 2vw, 1.55rem);
-  color: var(--accent-4);
 }
 
 .hero-panel {
