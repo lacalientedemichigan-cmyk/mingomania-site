@@ -150,7 +150,7 @@ async function loadVisitCounter() {
       window.sessionStorage.setItem(counterSessionKey, "1");
     }
   } catch (error) {
-    visitCounterValue.textContent = "Mingomaniacos";
+    visitCounterValue.textContent = "--";
   }
 }
 

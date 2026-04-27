@@ -364,6 +364,13 @@ a {
   text-shadow: 0 8px 18px rgba(244, 187, 67, 0.18);
 }
 
+.hero-counter-unit {
+  color: #fff4d2;
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  letter-spacing: 0.04em;
+}
+
 .meta-pill {
   min-width: 180px;
   padding: 16px 18px;
