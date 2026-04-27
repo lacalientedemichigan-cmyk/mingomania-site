@@ -5,6 +5,7 @@ const siteHeader = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenuLinks = document.querySelectorAll(".site-menu a");
 const counterSessionKey = "mingomania-site-visit-counted";
+const counterStartingValue = 1000;
 
 function setMenuState(isOpen) {
   if (!siteHeader || !menuToggle) return;
@@ -150,7 +151,7 @@ async function loadVisitCounter() {
       window.sessionStorage.setItem(counterSessionKey, "1");
     }
   } catch (error) {
-    visitCounterValue.textContent = "--";
+    renderVisitCounter(counterStartingValue);
   }
 }
 
