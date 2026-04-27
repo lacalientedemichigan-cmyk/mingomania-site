@@ -4,8 +4,6 @@ const visitCounterValue = document.getElementById("visit-counter-value");
 const siteHeader = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenuLinks = document.querySelectorAll(".site-menu a");
-const counterNamespace = "mingomania.net";
-const counterKey = "site-visits";
 const counterSessionKey = "mingomania-site-visit-counted";
 
 function setMenuState(isOpen) {
@@ -136,8 +134,8 @@ async function loadVisitCounter() {
 
   const hasCountedSession = window.sessionStorage.getItem(counterSessionKey) === "1";
   const endpoint = hasCountedSession
-    ? `https://api.countapi.xyz/get/${counterNamespace}/${counterKey}`
-    : `https://api.countapi.xyz/hit/${counterNamespace}/${counterKey}`;
+    ? "/api/visit-counter?mode=get"
+    : "/api/visit-counter?mode=hit";
 
   try {
     const response = await fetch(endpoint, { cache: "no-store" });
@@ -152,7 +150,7 @@ async function loadVisitCounter() {
       window.sessionStorage.setItem(counterSessionKey, "1");
     }
   } catch (error) {
-    visitCounterValue.textContent = "Pronto";
+    visitCounterValue.textContent = "Mingomaniacos";
   }
 }
 
