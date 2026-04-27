@@ -1,74 +1,102 @@
-const COUNTER_NAMESPACE = "mingomania.net";
-const COUNTER_KEY = "site-visits";
-const COUNTER_BASE_URL = "https://api.countapi.xyz";
-const STARTING_COUNT = 1000;
+const COUNTER_KEY = "mingomania:visits";
+const COUNTER_START = 1000;
 
-async function countRequest(path) {
-  const response = await fetch(`${COUNTER_BASE_URL}${path}`, {
-    headers: {
-      Accept: "application/json",
-    },
-  });
+function readEnv(name) {
+  const value = process.env[name];
+  return typeof value === "string" ? value.trim() : "";
+}
 
-  const payload = await response.json().catch(() => ({}));
-
+function getRedisConfig() {
   return {
-    ok: response.ok,
-    status: response.status,
-    payload,
+    url: readEnv("UPSTASH_REDIS_REST_URL"),
+    token: readEnv("UPSTASH_REDIS_REST_TOKEN"),
   };
 }
 
-async function getCounterValue(mode) {
-  if (mode === "hit") {
-    const hitResult = await countRequest(`/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
+async function redisCommand(command, ...args) {
+  const { url, token } = getRedisConfig();
 
-    if (!hitResult.ok) {
-      throw new Error(`CountAPI hit failed with status ${hitResult.status}`);
-    }
-
-    return hitResult.payload.value;
+  if (!url || !token) {
+    throw new Error("Missing Upstash Redis environment variables");
   }
 
-  const getResult = await countRequest(`/get/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
+  const encodedSegments = [command, ...args].map((segment) =>
+    encodeURIComponent(String(segment)),
+  );
 
-  if (getResult.ok) {
-    return getResult.payload.value;
+  const response = await fetch(`${url}/${encodedSegments.join("/")}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`Upstash error ${response.status}: ${body}`);
   }
 
-  if (getResult.status === 404) {
-    const hitResult = await countRequest(`/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
+  return response.json();
+}
 
-    if (!hitResult.ok) {
-      throw new Error(`CountAPI create failed with status ${hitResult.status}`);
-    }
+async function readCounter() {
+  const payload = await redisCommand("GET", COUNTER_KEY);
+  const numericValue = Number(payload?.result);
+  return Number.isFinite(numericValue) ? numericValue : null;
+}
 
-    return hitResult.payload.value;
+async function writeCounter(value) {
+  await redisCommand("SET", COUNTER_KEY, Math.max(COUNTER_START, Number(value)));
+}
+
+async function ensureBaseCounter() {
+  const currentValue = await readCounter();
+
+  if (currentValue === null || currentValue < COUNTER_START) {
+    await writeCounter(COUNTER_START);
+    return COUNTER_START;
   }
 
-  throw new Error(`CountAPI get failed with status ${getResult.status}`);
+  return currentValue;
+}
+
+async function getCounterValue() {
+  return ensureBaseCounter();
+}
+
+async function hitCounterValue() {
+  const currentValue = await readCounter();
+
+  if (currentValue === null || currentValue < COUNTER_START) {
+    await writeCounter(COUNTER_START);
+    return COUNTER_START;
+  }
+
+  const payload = await redisCommand("INCR", COUNTER_KEY);
+  const incrementedValue = Number(payload?.result);
+
+  if (!Number.isFinite(incrementedValue)) {
+    throw new Error("Invalid counter value returned by Upstash");
+  }
+
+  return Math.max(COUNTER_START, incrementedValue);
 }
 
 export default async function handler(req, res) {
   const mode = req.query?.mode === "hit" ? "hit" : "get";
 
   try {
-    const value = await getCounterValue(mode);
-    const normalizedValue = Math.max(STARTING_COUNT, Number(value) || 0);
+    const value = mode === "hit" ? await hitCounterValue() : await getCounterValue();
 
     res.setHeader("Cache-Control", "no-store, max-age=0");
 
     return res.status(200).json({
-      ok: true,
-      value: normalizedValue,
+      mode,
+      key: COUNTER_KEY,
+      value,
     });
   } catch (error) {
-    res.setHeader("Cache-Control", "no-store, max-age=0");
-
-    return res.status(200).json({
-      ok: false,
-      fallback: true,
-      value: STARTING_COUNT,
+    return res.status(500).json({
       error: "Failed to load visit counter",
       details: error.message,
     });
