@@ -1,5 +1,37 @@
 const featuredContainer = document.getElementById("featured-videos");
 const quickPicksContainer = document.getElementById("quick-picks");
+const siteHeader = document.querySelector(".site-header");
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenuLinks = document.querySelectorAll(".site-menu a");
+
+function setMenuState(isOpen) {
+  if (!siteHeader || !menuToggle) return;
+
+  siteHeader.classList.toggle("is-menu-open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menu" : "Abrir menu");
+}
+
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    const nextOpen = !siteHeader?.classList.contains("is-menu-open");
+    setMenuState(nextOpen);
+  });
+}
+
+mobileMenuLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    if (window.innerWidth <= 760) {
+      setMenuState(false);
+    }
+  });
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 760) {
+    setMenuState(false);
+  }
+});
 
 function formatDate(value) {
   try {
