@@ -1,8 +1,12 @@
 const featuredContainer = document.getElementById("featured-videos");
 const quickPicksContainer = document.getElementById("quick-picks");
+const visitCounterValue = document.getElementById("visit-counter-value");
 const siteHeader = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenuLinks = document.querySelectorAll(".site-menu a");
+const counterNamespace = "mingomania.net";
+const counterKey = "site-visits";
+const counterSessionKey = "mingomania-site-visit-counted";
 
 function setMenuState(isOpen) {
   if (!siteHeader || !menuToggle) return;
@@ -116,6 +120,42 @@ function renderQuickPicks(videos) {
   `).join("");
 }
 
+function formatCount(value) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) return "--";
+  return new Intl.NumberFormat("es-MX").format(numericValue);
+}
+
+function renderVisitCounter(value) {
+  if (!visitCounterValue) return;
+  visitCounterValue.textContent = formatCount(value);
+}
+
+async function loadVisitCounter() {
+  if (!visitCounterValue) return;
+
+  const hasCountedSession = window.sessionStorage.getItem(counterSessionKey) === "1";
+  const endpoint = hasCountedSession
+    ? `https://api.countapi.xyz/get/${counterNamespace}/${counterKey}`
+    : `https://api.countapi.xyz/hit/${counterNamespace}/${counterKey}`;
+
+  try {
+    const response = await fetch(endpoint, { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const payload = await response.json();
+    renderVisitCounter(payload.value);
+
+    if (!hasCountedSession) {
+      window.sessionStorage.setItem(counterSessionKey, "1");
+    }
+  } catch (error) {
+    visitCounterValue.textContent = "Pronto";
+  }
+}
+
 async function loadVideos() {
   try {
     const response = await fetch("/api/youtube-videos", {
@@ -137,3 +177,4 @@ async function loadVideos() {
 }
 
 loadVideos();
+loadVisitCounter();

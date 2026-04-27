@@ -350,6 +350,17 @@ a {
   font-size: 1rem;
 }
 
+.meta-pill-counter {
+  background:
+    linear-gradient(135deg, rgba(15, 142, 76, 0.18), rgba(240, 181, 75, 0.14), rgba(213, 58, 50, 0.16)),
+    rgba(255, 248, 239, 0.03);
+}
+
+.meta-pill-counter strong {
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  color: var(--accent-4);
+}
+
 .hero-panel {
   display: grid;
   align-content: space-between;
